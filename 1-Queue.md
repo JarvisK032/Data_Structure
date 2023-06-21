@@ -16,6 +16,37 @@ When the person at the front is removed from the queue we call this a dequeue op
 
 ## QUEUES IN PYTHON
 
+In Python, a queue can be represented using a list.
+
+Here's an example of how to use a queue in Python:
+
+```python
+# Create an empty queue using a list
+queue = []
+
+# Enqueue elements
+queue.append(10)
+queue.append(20)
+queue.append(30)
+
+# Dequeue elements
+item = queue.pop(0)
+print(item)  # Output: 10
+
+# Peek at the front element
+front_item = queue[0]
+print(front_item)  # Output: 20
+
+# Check if the queue is empty
+is_empty = len(queue) == 0
+print(is_empty)  # Output: False
+
+# Get the size of the queue
+size = len(queue)
+print(size)  # Output: 2
+
+```
+
 ![guess_design](queue2.png)
 
 
