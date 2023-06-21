@@ -31,19 +31,23 @@ queue.append(30)
 
 # Dequeue elements
 item = queue.pop(0)
-print(item)  # Output: 10
+print(item)  
+# # Expected Result: 10
 
 # Peek at the front element
 front_item = queue[0]
-print(front_item)  # Output: 20
+print(front_item)  
+# Expected Result: 20
 
 # Check if the queue is empty
 is_empty = len(queue) == 0
-print(is_empty)  # Output: False
+print(is_empty)  
+# Expected Result: False
 
 # Get the size of the queue
 size = len(queue)
-print(size)  # Output: 2
+print(size)  
+# Expected Result: 2
 
 ```
 
