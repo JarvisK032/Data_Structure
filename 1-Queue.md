@@ -1,170 +1,130 @@
 # Queue
 
-Software would be very boring if we didn't have the ability to make choices.  Imagine you had a game app on your phone that didn't allow you to make any choices:
+A queue is a linear data structure that follows the principle of "first-in, first-out" (FIFO).It represents a collection of elements where new elements are inserted at one end(back), and existing elements are removed from the other end (front).
 
-- You wouldn't be able to set an avatar if you select one when the game starts
-- You wouldn't be able to move if you swipe left or right
-- You wouldn't be able to change to a new level if you completed all the tasks
-- You wouldn't be able to start the game over if you lose
-- You wouldn't be able to fire your weapon if you pull the trigger (and likewise, neither would your enemies)
-- In reality, the game would always run the exact same way regardless of what you tried to do 
+The purpose of using queue is to provide an efficient way to manage elements in a sequential order, following the FIFO principle. It allows for the insertion of elements at one end and removal from the other, making it suitable for scenarios where order matters, such as task scheduling, event handling, and managing resources in a fair manner.
 
-A conditional in Python is written using the `if`statement.  In the example below, a message is displayed if the temperature is below freezing (using units of Fahrenheit):
+## EXAMPLE OF QUEUE
 
-```python
-if temp <= 32.0:
-	print("Watch for ice!")
-```
+A queue can be visualized as a real-life queue, such as people waiting in line.
 
-In Python, we use the colon (`:`) to indicate the beginning of a block of code.  In this case, the block of code that displays the message will only occur the the condition is True.  The condition `temp <= 32.0` is called a boolean expression.  A boolean expression will also result in a True or a False.  If the boolean expression is True, then code in the block will run.
+![guess_design](queue.jpeg)
 
-## Boolean Expressions
+The person who arrives first joins the queue first and gets served first, while the person who arrives later joins at the end and gets served after everyone ahead of them.
 
-A boolean expressions will use one or more of the following boolean operators:
+When the person at the front is removed from the queue we call this a dequeue operation. When a new person joins the queue at the back, we call this an enqueue operation. No one can cheat and enter the line in the middle of the queue.
 
-- `==`  :  Equal To (Don't confuse this with a single `=` sign which is used for assigning a value to a variable)
-- `>` : Greater than
-- `>=` : Greater than or equal too
-- `<` : Less than
-- `<=` : Less than or equal too
-- `!=` : Not equal To
+## QUEUES IN PYTHON
 
-Here are some examples of Boolean Expressions:
+Sometimes we want to repeat something a certain number of times.  In this case, we don't have a collection  to loop through.  In Python, we can use the `range` function to create a "list" of numbers.  The `range` does not really give you a list, but its like a list in that you can loop through it with a `for` loop.  This can be very useful if we want to build a loop to repeat something.  For example, if we wanted to print out "Hello" 100 times, we could write the following:
 
 ```python
-if name == "Bob":
-	print("We found Bob!")
-	
-if pressure > 100:
-	print("Danger! High Pressure Alert!")
-	
-if choice != "quit":
-	print("Let's keep playing")
+for x in range(100):
+    print("Hello")
 ```
 
-We can make compound boolean expressions by combining one or more boolean expressions together using these boolean operators:
+In this code, the `range(100)` will create a list of numbers from 0 to 99.  If we loop through that list, it will run 100 times.  The result is "Hello" printed 100 times.  Notice that the variable `x` is not being used in the loop block.  This is common when all we wanted to do was to repeat the code in the block.
 
-- `and` : Test to see if both boolean expressions are True
-- `or` : Test to see if at least one of the two boolean expression are True
-- `not`: Test to see if a boolean expression is False (note this one only deals with one boolean expression)
+## While Loops
 
-We can make compound boolean expressions as complicated as they need to be.  We can use parentheses to help create the right scenarios.  Here are some examples:
+The `while` loop also repeats a block of code but the number of times the loop will run is usually not known.  The `while` loop includes a boolean condition to determine if the loop should continue running.
 
 ```python
-if temp > 50 and wind < 20:
-	print("Lets go hiking!")
-	
-if pressume < 20 or (pressure < 30 and leak_detected == True):
-	print("Someone quickly close the valve!")
-	
-# We can rewrite the previous example without the == because leak_detected
-# is already a boolean.  Here is how we do that:
-
-if pressure < 20 or (pressure < 30 and leak_detected):
-	print("Someone quickly close the valve!")
-	
-if (not alive) and (points > 30) and (name != "Bob"):
-	print("Since you did well (and you are not Bob), you get to play again!")
+choice = None
+while choice != "quit":
+    choice = input("Enter a command: ")
+    
+    # Do something based on the value of choice
 ```
 
-## Multiple Conditions
+Notice that this loop will continue to run so long as the user does not type "quit" for the command.  This loop might run only 1 time if the user types "quit" for their first command or the loop might run forever if the user never types "quit".  It's also possible for a while loop to not run at all.  Imagine if choice was already equal to "quit" before we got to the while loop.  If this was the case, then we would not enter the while loop.  It's important to think about how we will allow entry to the `while` loop.  In this case, we choose to set `choice` equal to `None` (which is a safe value).  Since `None` does not equal "quit", we know that we will run the while loop at least one time. 
 
-When we allow the software to make decisions, there might be more than one decision that should be made.  Specifying multiple conditions in python uses the `elif` and `else` keywords.  The `elif` keyword means "else if" and represents an additional condition.  The `else` keyword represents all other possible conditions.  Here is a complete example to consider:
+## Example: Random Number Guessing Game
 
-```Python
-if temp <= 32.0:
-	print("Watch for ice!")
-elif temp <= 50.0:
-	print("Might want to bring a jacket!")
-elif temp <= 80.0:
-	print("What a beautiful day!")
-else:
-	print("Its warm out there ... look for some shade!")
-```
+When we design loops, it can be useful to draw a flow chart of how we want our program to run.  Designing software before writing code is a wise first step.  A flow chart is a simple design technique where rectangle boxes are used to represents actions and diamonds are used to represent decisions.  Arrows are drawn to represent the flow between boxes and diamonds.  The following flow chart represents a random number guessing game. 
 
-When this code runs, if will first consider the `temp <= 32.0` condition.  If its True, then it will run the code within the block but then skip all the other conditions.  If the first condition was False, then it will consider the second condition `temp <= 50`.  Notice that in this second condition, we can assume that the temperature is already great than 32.0 because the first condition failed.  If none of the first 3 conditions result in a True (perhaps the temperature is balmy 90 degrees), then the `else` condition will result in True.  Notice that we never put a boolean condition next to the keyword `else`.
+![guess_design](queue.jpeg)
 
-Sometimes programmers think they always need to put an `elif` and an `else` when they write an `if` statement.  This is not true.  You should think about all the scenarios you want to check for and use the `elif` and `else` as needed.  If we wrote the same code above  but without `elif` and `else`, we would have to write more complicated boolean expressions.  It is better to use `elif` and `else` to simplify the code and ensure the result we want.
-
-## Example : Geometry Calculator
-
-In the example below, we will write a simple Geometry Calculator.  Before we write the code, we should first think about what we want the software to do.  Writing a list of requirements is an important step in writing software.  The requirements can help us ensure that we using conditionals correctly.  
-
-Geometry Calculator Requirements:
-
-- Allow the user to select the shape they want to calculate the area for
-- Ask the user for the size information of the shape they selected
-- Ensure that size lengths are all valid (greater than zero)
-- Display the results
+In the flow chart, notice that the arrows are forming cycles or loops.  This is an indication that loops should be added to your code.  The design may lead you to write the code a very specific way.  Its also possible that you can simplify your code by reconsidering and redrawing your flow chart.  For the chart above, we have a `while` loop within a `while` loop.  The outer `while` loop (the red line in the flow chart) is used to allow the user to play a new game again.  The inner `while` loop (the blue line in the flow chart) is used to allow the user to continue guessing the number until they get it right.  The boolean conditions for those while loops can be determined by looking at the chart.  The red loop continues so long as the user says "YES" to the play again prompt.  The blue loop continues so long as the guess does not match.  Compare the code below with the design above.
 
 ```python
-import math
+import random
 
-print("Welcome to the Geometry Calculator")
-print("Please select a shape:")
-print("1) Square")
-print("2) Triangle")
-print("3) Circle")
-choice = int(input("> "))  
-if choice == 1:
-    side = float(input("Side length of the square: "))
-    if side > 0:
-        area = side ** 2
-        print("The area is {}".format(area))
-    else:
-        print("Invalid side length!")
-elif choice == 2:
-    base = float(input("Length of the triangle base: "))
-    height = float(input("Length of the triangle height: "))
-    if base > 0 and height > 0:
-        area = 0.5 * base * height
-        print("The area is {}".format(area))
-    else:
-        print("One of the lengths was invalid!")
-elif choice == 3:
-    radius = float(input("Raidus of the circle: "))
-    if radius > 0:
-        area = math.pi * radius * radius
-        print("The area is {}".format(area))
-    else:
-        print("Invalid radius length!")
-else:
-    print("Invalid Menu Selection")
+print("Welcome")
+play_again = "YES"  # This will allow us into the loop the first time
+while play_again == "YES":
+    rand_num = random.randint(1,100)
+    num_guesses = 0
+    guess = -1 # This will allow us into the loop the first time
+    while guess != rand_num:
+        guess = int(input("Enter a guess: "))
+        num_guesses += 1
+        if guess < rand_num:
+            print("Higher!")
+        elif guess > rand_num:
+            print("Lower!")
+    print("Congrats!")
+    print("It took {} guesses.".format(num_guesses))
+    play_again = input("Play again? ")
+print("Goodbye")
 ```
 
-Note the use of `elif` to provide conditions for different choices and `else` for the special condition of an invalid choice.  Within each conditional block, different prompts, variables, expressions, and conditionals are used.
+## Problem to Solve : Geometric Series Sum
 
-## Problem to Solve : Summer Camp Cost
+Write a program that will allow the user to estimate the sum of geometric series.  A geometric series one where each element in the series is calculated by multiplying the previous value by a constant.  For example, here is a geometric series:
+$$
+1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{16}, \frac{1}{32}
+$$
+The series begins at 1 (called the initial term) and each number is determined by multiplying the previous number by 0.5 (called the series).  You should use a loop to add all of the numbers in the series.  You will have to ask the user for three things:
 
-Write a program that will determine the cost for a child to attend a summer camp based on various factors described below:
+- What is the initial term in the series
+- What is the ratio to use to calculate each number in the series
+- How many terms in the series to calculate and add together (not including the initial term)
 
-The base cost of attending summer camp is determined by the age of the child:
+After displaying the answer, you should allow the user to calculate another sum instead of exiting the program.  You can ignore cases where the user types in invalid values (e.g. ratio of 0, number of terms in the series <= 0, etc).
 
-|   Age   |      Cost      |
-| :-----: | :------------: |
-| Under 8 | Can not attend |
-|  8-10   |     $1000      |
-|  11-12  |     $1500      |
-|  13-16  |     $2000      |
-| Over 16 | Can not attend |
+The example execution show how a ratio of 0.5 converges the sum towards 2 and how a ratio of 2 does not converge but instead goes towards infinity.
 
-The base cost is reduced based on the number of children (of any age) in the family and the family income:
+```
+Initial Term: 1
+Ratio: 0.5
+Terms to add: 5
+Sum = 1.96875000000000000000
 
-| Family Income        | 1 Child in Family | 2 Children in Family | 3+ Children in Family |
-| -------------------- | ----------------- | -------------------- | --------------------- |
-| Under 25K per Year   | - 70%             | - 80%                | - 90%                 |
-| Under 50K per Year   | - 40%             | - 50%                | - 60%                 |
-| Under 75K per Year   | - 10%             | - 20%                | - 30%                 |
-| 75K or More per Year | No Reduction      | No Reduction         | No Reduction          |
+Again (Y/N)? Y
+Initial Term: 1
+Ratio: 0.5
+Terms to add: 20
+Sum = 1.99999904632568359375
 
-You can test your program with the following scenarios:
+Again (Y/N)? Y
+Initial Term: 1
+Ratio: 0.5
+Terms to add: 50
+Sum = 1.99999999999999911182
 
-- Test 1: 10 year old, 2 children in the family, family income 45K per year will cost: $500 (50% off)
-- Test 2: 14 year old, 3 children in the family, family income 70K per year will cost: $1400 (30% off)
-- Test 3: 12 year old, 1 child in the family, family income 80K per year will cost: $1500 (0% off)
-- Test 4: 18 year old, 3 children in the family, family income 23K per year will cost: N/A - They can't attend
+Again (Y/N)? Y
+Initial Term: 1
+Ratio: 2
+Terms to add: 5
+Sum = 63.00000000000000000000
 
-You can check your code with the solution here: [Solution](summer_camp_cost.py)
+Again (Y/N)? Y
+Initial Term: 1
+Ratio: 2
+Terms to add: 20
+Sum = 2097151.00000000000000000000
+
+Again (Y/N)? Y
+Initial Term: 1
+Ratio: 2
+Terms to add: 50
+Sum = 2251799813685247.00000000000000000000
+
+Again (Y/N)? N
+```
+
+You can check your code with the solution here: [Solution](geometric_series_sum.py)
 
 
 
