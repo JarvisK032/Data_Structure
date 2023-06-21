@@ -59,31 +59,38 @@ The performance of the queue using a Python list is based on the performance of 
 
 
 
-## Example: Random Number Guessing Game
+## Example Code: Print Job Scheduler
 
-
+In this scenario, you are developing a print job scheduler for a printer. Multiple users send print jobs to the printer, and the scheduler needs to ensure that the jobs are processed in the order they were received.
 
 ```python
-import random
+class PrintJobScheduler:
+    def __init__(self):
+        self.queue = []
 
-print("Welcome")
-play_again = "YES"  # This will allow us into the loop the first time
-while play_again == "YES":
-    rand_num = random.randint(1,100)
-    num_guesses = 0
-    guess = -1 # This will allow us into the loop the first time
-    while guess != rand_num:
-        guess = int(input("Enter a guess: "))
-        num_guesses += 1
-        if guess < rand_num:
-            print("Higher!")
-        elif guess > rand_num:
-            print("Lower!")
-    print("Congrats!")
-    print("It took {} guesses.".format(num_guesses))
-    play_again = input("Play again? ")
-print("Goodbye")
+    def enqueue_job(self, job):
+        self.queue.append(job)
+        print(f"Job '{job}' added to the print queue.")
+
+    def process_jobs(self):
+        while self.queue:
+            job = self.queue.pop(0)
+            print(f"Printing job: '{job}'")
+
+scheduler = PrintJobScheduler()
+
+# Enqueue print jobs
+scheduler.enqueue_job("Document1")
+scheduler.enqueue_job("Document2")
+scheduler.enqueue_job("Document3")
+
+# Process print jobs
+scheduler.process_jobs()
+
 ```
+Using a queue in this scenario ensures that the print jobs are processed in the order they were received, following the FIFO principle. It provides a fair scheduling mechanism where the first job to arrive is the first to be printed.
+
+The queue allows for efficient insertion of new print jobs at the back and removal of jobs from the front, ensuring that the jobs are processed in the correct order. It also handles cases when multiple print jobs are submitted concurrently, managing them in a sequential manner.
 
 ## Problem to Solve : Geometric Series Sum
 
