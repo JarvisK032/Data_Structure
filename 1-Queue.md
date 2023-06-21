@@ -92,62 +92,12 @@ Using a queue in this scenario ensures that the print jobs are processed in the 
 
 The queue allows for efficient insertion of new print jobs at the back and removal of jobs from the front, ensuring that the jobs are processed in the correct order. It also handles cases when multiple print jobs are submitted concurrently, managing them in a sequential manner.
 
-## Problem to Solve : Geometric Series Sum
+## Problem to Solve : Call Center Customer Support
 
-Write a program that will allow the user to estimate the sum of geometric series.  A geometric series one where each element in the series is calculated by multiplying the previous value by a constant.  For example, here is a geometric series:
-$$
-1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{16}, \frac{1}{32}
-$$
-The series begins at 1 (called the initial term) and each number is determined by multiplying the previous number by 0.5 (called the series).  You should use a loop to add all of the numbers in the series.  You will have to ask the user for three things:
+Write a program to help the call center receives incoming customer calls that need to be handled by customer support representatives. The calls should be serviced in the order they are received.
 
-- What is the initial term in the series
-- What is the ratio to use to calculate each number in the series
-- How many terms in the series to calculate and add together (not including the initial term)
 
-After displaying the answer, you should allow the user to calculate another sum instead of exiting the program.  You can ignore cases where the user types in invalid values (e.g. ratio of 0, number of terms in the series <= 0, etc).
-
-The example execution show how a ratio of 0.5 converges the sum towards 2 and how a ratio of 2 does not converge but instead goes towards infinity.
-
-```
-Initial Term: 1
-Ratio: 0.5
-Terms to add: 5
-Sum = 1.96875000000000000000
-
-Again (Y/N)? Y
-Initial Term: 1
-Ratio: 0.5
-Terms to add: 20
-Sum = 1.99999904632568359375
-
-Again (Y/N)? Y
-Initial Term: 1
-Ratio: 0.5
-Terms to add: 50
-Sum = 1.99999999999999911182
-
-Again (Y/N)? Y
-Initial Term: 1
-Ratio: 2
-Terms to add: 5
-Sum = 63.00000000000000000000
-
-Again (Y/N)? Y
-Initial Term: 1
-Ratio: 2
-Terms to add: 20
-Sum = 2097151.00000000000000000000
-
-Again (Y/N)? Y
-Initial Term: 1
-Ratio: 2
-Terms to add: 50
-Sum = 2251799813685247.00000000000000000000
-
-Again (Y/N)? N
-```
-
-You can check your code with the solution here: [Solution](geometric_series_sum.py)
+You can check your code with the solution here: [Solution](callcenter.py)
 
 
 
