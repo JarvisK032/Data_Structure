@@ -43,19 +43,14 @@ print('apple' in fruits)
 vegetables = {'carrot', 'spinach', 'tomato', 'apple'}
 
 # Union of two sets
-all_items = fruits.union(vegetables)
+all_items = union(fruits, vegetables)
 print(all_items)
 # Expected Result: {'apple', 'carrot', 'spinach', 'grape', 'tomato', 'orange', 'pear'}
 
 # Intersection of two sets
-common_items = fruits.intersection(vegetables)
+common_items = intersection(fruits, vegetables)
 print(common_items)
 # Expected Result: {'apple'}
-
-# Difference between two sets
-unique_fruits = fruits.difference(vegetables)
-print(unique_fruits)
-# Expected Result: {'pear', 'grape', 'orange'}
 
 # Size of a set
 print(len(fruits))
@@ -66,7 +61,7 @@ print(len(fruits))
 
 In the above example, a set called fruits is created, containing various fruit names. Since sets do not allow duplicates, any duplicate elements are automatically removed. Elements can be added to the set using the add() method and removed using the remove() method.
 
-Membership testing is demonstrated by checking if the element 'apple' is present in the set. Set operations like union, intersection, and difference are performed between the fruits set and a vegetables set. The size of the set is obtained using the len() function.
+Membership testing is demonstrated by checking if the element 'apple' is present in the set. Set operations like union and intersection are performed between the fruits set and a vegetables set. The size of the set is obtained using the len() function.
 
 The performance of the set is based on the performance of the hashing algorithm.
 
