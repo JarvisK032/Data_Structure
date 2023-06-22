@@ -6,11 +6,11 @@ A set is a data structure that represents a collection of distinct elements with
 
 Let's use hashing as an example, the set is able to add, remove, and test for membership in O(1) time.
 
-![guess_design](queue.jpeg)
+![guess_design](set.jpeg)
 
-The person who arrives first joins the queue first and gets served first, while the person who arrives later joins at the end and gets served after everyone ahead of them.
+In the example above, we have several one-digit numbers added to the list according to the index rule. One important observation is that checking if a number exists in the list becomes a constant time operation (O(1)) because we can directly calculate the index.
 
-When the person at the front is removed from the queue we call this a dequeue operation. When a new person joins the queue at the back, we call this an enqueue operation. No one can cheat and enter the line in the middle of the queue.
+There is only one position for each value in the set, duplicates are not allowed because there would be no place to put them. In summary, using this approach, we can create a set with O(1) performance for operations like adding, removing, and checking membership, making it efficient for working with a small range of unique elements.
 
 ## SET IN PYTHON
 
@@ -74,45 +74,44 @@ The performance of the set is based on the performance of the hashing algorithm.
 
 
 
-## Example Code: Print Job Scheduler
+## Example Code: Finding Common Colors
 
-In this scenario, you are developing a print job scheduler for a printer. Multiple users send print jobs to the printer, and the scheduler needs to ensure that the jobs are processed in the order they were received.
+Imagine you have collections of colored objects, and you want to compare collections and find common colors. 
+
+You can use a set to accomplish this efficiently. Here's a simple code example:
 
 ```python
-class PrintJobScheduler:
-    def __init__(self):
-        self.queue = []
+# Create sets for unique colors in two collections
+colors_set1 = {'red', 'blue', 'green', 'yellow'}
+colors_set2 = {'blue', 'yellow', 'purple', 'pink'}
 
-    def enqueue_job(self, job):
-        self.queue.append(job)
-        print(f"Job '{job}' added to the print queue.")
+# Find common colors using set intersection
+common_colors = colors_set1 & colors_set2
 
-    def process_jobs(self):
-        while self.queue:
-            job = self.queue.pop(0)
-            print(f"Printing job: '{job}'")
+# Display the common colors
+print("Common Colors:")
+for color in common_colors:
+    print(color)
 
-scheduler = PrintJobScheduler()
-
-# Enqueue print jobs
-scheduler.enqueue_job("Document1")
-scheduler.enqueue_job("Document2")
-scheduler.enqueue_job("Document3")
-
-# Process print jobs
-scheduler.process_jobs()
+# Calculate the number of common colors
+num_common_colors = len(common_colors)
+print(num_common_colors)
 
 ```
-Using a queue in this scenario ensures that the print jobs are processed in the order they were received, following the FIFO principle. It provides a fair scheduling mechanism where the first job to arrive is the first to be printed.
+In this scenario, we have two sets, colors_set1 and colors_set2, representing unique colors in two different collections. We want to compare these sets to find the common colors.
 
-The queue allows for efficient insertion of new print jobs at the back and removal of jobs from the front, ensuring that the jobs are processed in the correct order. It also handles cases when multiple print jobs are submitted concurrently, managing them in a sequential manner.
+We use the intersection() method to find the common colors between the two sets. The resulting set, common_colors, contains only the colors that exist in both sets.
 
-## Problem to Solve : Call Center Customer Support
+Finally, we display the common colors by iterating over the common_colors set and printing each color. We also calculate the number of common colors by obtaining the length of the set using len().
 
-Write a program to help the call center receives incoming customer calls that need to be handled by customer support representatives. The calls should be serviced in the order they are received.
+This program demonstrates how sets and set operations can be used to efficiently compare collections and find common elements, such as common colors between two sets.
+
+## Problem to Solve : Merging Email Lists
+
+Write a program to merge two email marketing lists from different sources and create a consolidated list without any duplicate email addresses.
 
 
-You can check your code with the solution here: [Solution](callcenter.py)
+You can check your code with the solution here: [Solution](set.py)
 
 
 
