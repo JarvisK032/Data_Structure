@@ -37,58 +37,97 @@ Insert 20 in the empty spot to the left of 24.
 
 ## TREE IN PYTHON
 
-In Python, a set can be represented using a curly braces (e.g. my_set = {1, 2, 3}) To create an empty set (unlike an empty list), we use the code: empty_set = set().
-
-Here's an example of how to use a set in Python:
 
 ```python
-# Creating a set
-fruits = {'apple', 'banana', 'orange', 'apple', 'pear'}
+def insert(self, data):
+	"""
+	Insert 'data' into the BST.  If the BST
+	is empty, then set the root equal to the new 
+	node.  Otherwise, use _insert to recursively
+	find the location to insert.
+	"""
+	if self.root is None:
+		self.root = BST.Node(data)
+	else:
+		self._insert(data, self.root)  # Start at the root
 
-print(fruits)
-# Expected Result: {'apple', 'pear', 'banana', 'orange'}
-
-# Adding elements to a set
-fruits.add('grape')
-print(fruits)
-# Expected Result: {'apple', 'pear', 'banana', 'grape', 'orange'}
-
-# Removing an element from a set
-fruits.remove('banana')
-print(fruits)
-# Expected Result: {'apple', 'pear', 'grape', 'orange'}
-
-# Checking membership in a set
-print('apple' in fruits)
-# Expected Result: True
-
-# Performing set operations
-vegetables = {'carrot', 'spinach', 'tomato', 'apple'}
-
-# Union of two sets
-all_items = union(fruits, vegetables)
-print(all_items)
-# Expected Result: {'apple', 'carrot', 'spinach', 'grape', 'tomato', 'orange', 'pear'}
-
-# Intersection of two sets
-common_items = intersection(fruits, vegetables)
-print(common_items)
-# Expected Result: {'apple'}
-
-# Size of a set
-print(len(fruits))
-# Expected Result: 4
-
+def _insert(self, data, node):
+	"""
+	This function will look for a place to insert a node
+	with 'data' inside of it.  The current subtree is
+	represented by 'node'.  This function is intended to be
+	called the first time by the insert function.
+	"""
+	if data < node.data:
+		# The data belongs on the left side.
+		if node.left is None:
+			# We found an empty spot
+			node.left = BST.Node(data)
+		else:
+			# Need to keep looking.  Call _insert
+			# recursively on the left subtree.
+			self._insert(data, node.left)
+	elif data >= node.data:
+		# The data belongs on the right side.
+		if node.right is None:
+			# We found an empty spot
+			node.right = BST.Node(data)
+		else:
+			# Need to keep looking.  Call _insert
+			# recursively on the right subtree.
+			self._insert(data, node.right)
 
 ```
 
-In the above example, a set called fruits is created, containing various fruit names. Since sets do not allow duplicates, any duplicate elements are automatically removed. Elements can be added to the set using the add() method and removed using the remove() method.
+```python
+def __iter__(self):
+	"""
+    Perform a forward traversal (in order traversal) starting from 
+    the root of the BST.  This is called a generator function.
+    This function is called when a loop	is performed:
 
-Membership testing is demonstrated by checking if the element 'apple' is present in the set. Set operations like union and intersection are performed between the fruits set and a vegetables set. The size of the set is obtained using the len() function.
+	for value in my_bst:
+		print(value)
 
-The performance of the set is based on the performance of the hashing algorithm.
+	"""
+	yield from self._traverse_forward(self.root)  # Start at the root
 
-![guess_design](set2.png)
+def _traverse_forward(self, node):
+	"""
+	Does a forward traversal (in-order traversal) through the 
+	BST.  If the node that we are given (which is the current
+	subtree) exists, then we will keep traversing on the left
+	side (thus getting the smaller numbers first), then we will 
+	provide the data in the current node, and finally we will 
+	traverse on the right side (thus getting the larger numbers last).
+
+	The use of the 'yield' will allow this function to support loops
+	like:
+
+	for value in my_bst:
+		print(value)
+
+    The keyword 'yield' will return the value for the 'for' loop to
+    use.  When the 'for' loop wants to get the next value, the code in
+    this function will start back up where the last 'yield' returned a 
+    value.  The keyword 'yield from' is used when our generator function
+    needs to call another function for which a `yield` will be called.  
+    In other words, the `yield` is delegated by the generator function
+    to another function.
+
+	This function is intended to be called the first time by 
+	the __iter__ function.
+	"""
+	if node is not None:
+		yield from self._traverse_forward(node.left)
+		yield node.data
+		yield from self._traverse_forward(node.right)
+
+```
+
+The table below shows the common functions in a BST.
+
+![guess_design](tree3.png)
 
 
 
