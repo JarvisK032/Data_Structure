@@ -4,13 +4,19 @@ A tree is a data structure that consists of nodes connected by pointers. It is a
 
 ## EXAMPLE OF TREE
 
-Let's use hashing as an example, the set is able to add, remove, and test for membership in O(1) time.
+Here is an example of binary tree, it is a tree that links to no more than two other nodes.
 
-![guess_design](set.jpeg)
+![guess_design](tree.jpeg)
 
-In the example above, we have several one-digit numbers added to the list according to the index rule. One important observation is that checking if a number exists in the list becomes a constant time operation (O(1)) because we can directly calculate the index.
+Node: Each element in the tree is called a node. Nodes can have zero or more child nodes.
 
-There is only one position for each value in the set, duplicates are not allowed because there would be no place to put them. In summary, using this approach, we can create a set with O(1) performance for operations like adding, removing, and checking membership, making it efficient for working with a small range of unique elements.
+Root: The topmost node of the tree, which does not have any parent nodes.
+
+Parent and Child: A node that is connected to another node directly below it is considered the parent, while the connected node is its child.
+
+Leaf: Nodes that do not have any child nodes are referred to as leaf nodes or terminal nodes.
+
+Subtree: A subtree is a portion of the tree that consists of a node and all its descendants.
 
 ## TREE IN PYTHON
 
