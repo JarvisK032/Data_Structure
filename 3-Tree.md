@@ -22,6 +22,17 @@ Here is an example of binary search tree:
 
 ![guess_design](tree2.jpeg)
 
+When searching for a specific value in a binary search tree, comparisons are made at each node to determine whether to continue searching in the left or right subtree. By following the ordering property, the search operation can be performed by traversing only a fraction of the tree, resulting in a time complexity of O(log n) on average for search operations.
+
+Using the tree above, we can determine where to put additional items. We always start at the root node and compare the new value with it. We keep comparing until we have found an empty place for the new node. For example, to insert the value 20, do the following:
+
+Start at the root node 15 and compare with the new value 20
+
+Since 20 is greater than 15, goto the right and visit node 24
+
+Since 20 is less than 24, goto the left and see there is no additional node
+
+Insert 20 in the empty spot to the left of 24.
 
 
 ## TREE IN PYTHON
