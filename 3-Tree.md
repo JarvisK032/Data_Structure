@@ -18,6 +18,12 @@ Leaf: Nodes that do not have any child nodes are referred to as leaf nodes or te
 
 Subtree: A subtree is a portion of the tree that consists of a node and all its descendants.
 
+Here is an example of binary search tree:
+
+![guess_design](tree2.jpeg)
+
+
+
 ## TREE IN PYTHON
 
 In Python, a set can be represented using a curly braces (e.g. my_set = {1, 2, 3}) To create an empty set (unlike an empty list), we use the code: empty_set = set().
