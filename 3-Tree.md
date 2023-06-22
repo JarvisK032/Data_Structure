@@ -37,6 +37,7 @@ Insert 20 in the empty spot to the left of 24.
 
 ## TREE IN PYTHON
 
+The code below allows you to insert a new node with the given data into the BST.
 
 ```python
 def insert(self, data):
@@ -78,6 +79,10 @@ def _insert(self, data, node):
 			self._insert(data, node.right)
 
 ```
+
+This code implements the standard logic for inserting a node into a binary search tree based on the comparison of data values. It ensures that the BST maintains the ordering property, where all values in the left subtree are less than the current node, and all values in the right subtree are greater than or equal to the current node.
+
+Here is another example of using tree in python, the code below allows you to perform a in-order traversal of the BST and return a generator object that can be used in a loop to iterate over the values in the BST.
 
 ```python
 def __iter__(self):
@@ -124,6 +129,7 @@ def _traverse_forward(self, node):
 		yield from self._traverse_forward(node.right)
 
 ```
+This method provides a convenient way to access and process the values stored in the BST in a sorted order.You can use this code as part of a larger binary search tree implementation to enable iteration and traversal functionality.
 
 The table below shows the common functions in a BST.
 
@@ -131,44 +137,83 @@ The table below shows the common functions in a BST.
 
 
 
-## Example Code: Finding Common Colors
+## Example Code: Searching Books
 
-Imagine you have collections of colored objects, and you want to compare collections and find common colors. 
+In this scenario, you are managing an online store that sells books. You have a large inventory of books, and you want to efficiently organize and search for books.
 
-You can use a set to accomplish this efficiently. Here's a simple code example:
+You can use a BST to accomplish this efficiently. Here's a simple code example:
 
 ```python
-# Create sets for unique colors in two collections
-colors_set1 = {'red', 'blue', 'green', 'yellow'}
-colors_set2 = {'blue', 'yellow', 'purple', 'pink'}
+class BookNode:
+    def __init__(self, isbn, title):
+        self.isbn = isbn
+        self.title = title
+        self.left = None
+        self.right = None
 
-# Find common colors using set intersection
-common_colors = colors_set1 & colors_set2
+class BookInventory:
+    def __init__(self):
+        self.root = None
 
-# Display the common colors
-print("Common Colors:")
-for color in common_colors:
-    print(color)
+    def insert(self, isbn, title):
+        """
+        Insert a new book with the given ISBN and title into the BST.
+        """
+        if self.root is None:
+            self.root = BookNode(isbn, title)
+        else:
+            self._insert(isbn, title, self.root)
 
-# Calculate the number of common colors
-num_common_colors = len(common_colors)
-print(num_common_colors)
+    def _insert(self, isbn, title, node):
+        """
+	Insert a new book in the BST.
+        """
+        if isbn < node.isbn:
+            if node.left is None:
+                node.left = BookNode(isbn, title)
+            else:
+                self._insert(isbn, title, node.left)
+        elif isbn > node.isbn:
+            if node.right is None:
+                node.right = BookNode(isbn, title)
+            else:
+                self._insert(isbn, title, node.right)
+
+    def search(self, isbn):
+        """
+        Search for a book with the given ISBN in the BST.
+        Returns the book's title if found, or None if not found.
+        """
+        return self._search(isbn, self.root)
+
+    def _search(self, isbn, node):
+        """
+        Helper function to recursively search for a book with
+        the given ISBN in the BST.
+        """
+        if node is None or node.isbn == isbn:
+            return node.title
+        if isbn < node.isbn:
+            return self._search(isbn, node.left)
+        else:
+            return self._search(isbn, node.right)
+
 
 ```
-In this scenario, we have two sets, colors_set1 and colors_set2, representing unique colors in two different collections. We want to compare these sets to find the common colors.
+In this example, we have a BookNode class that represents a node in the binary search tree. Each node has an ISBN and a title associated with it, as well as left and right child pointers.
 
-We use the intersection() method to find the common colors between the two sets. The resulting set, common_colors, contains only the colors that exist in both sets.
+The BookInventory class manages the book inventory using a binary search tree. It has methods like insert to insert a new book, _insert as a helper function for insertion, search to search for a book by its ISBN, and _search as a helper function for searching.
 
-Finally, we display the common colors by iterating over the common_colors set and printing each color. We also calculate the number of common colors by obtaining the length of the set using len().
+You can create an instance of the BookInventory class and use it to manage your book inventory. The insert method allows you to add books to the inventory, and the search method enables you to search for books by their ISBN.
 
-This program demonstrates how sets and set operations can be used to efficiently compare collections and find common elements, such as common colors between two sets.
+This code provides a basic framework for managing books in a binary search tree based on their ISBN values.
 
 ## Problem to Solve : Merging Email Lists
 
-Write a program to merge two email marketing lists from different sources and create a consolidated list without any duplicate email addresses.
+Write a program to build a directory of employees for a company. Each employee has a unique employee ID and a corresponding name. You want to efficiently store and search for employee information based on their ID.
 
 
-You can check your code with the solution here: [Solution](set.py)
+You can check your code with the solution here: [Solution](bst.py)
 
 
 
