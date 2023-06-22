@@ -1,12 +1,10 @@
 # Set
 
-A queue is a linear data structure that follows the principle of "first-in, first-out" (FIFO).It represents a collection of elements where new elements are inserted at one end(back), and existing elements are removed from the other end (front).
+A set is a data structure that represents a collection of distinct elements with no specific order. The purpose of using sets are to ensure uniqueness, perform efficient membership testing, and leverage set operations for combining, comparing, or analyzing collections of elements. Sets provide a convenient and efficient way to work with distinct values and solve problems related to uniqueness and set theory. It is commonly used to perform operations such as membership testing, intersection, union, and difference.
 
-The purpose of using queue is to provide an efficient way to manage elements in a sequential order, following the FIFO principle. It allows for the insertion of elements at one end and removal from the other, making it suitable for scenarios where order matters, such as task scheduling, event handling, and managing resources in a fair manner.
+## EXAMPLE OF SET
 
-## EXAMPLE OF LINKED LIST
-
-A queue can be visualized as a real-life queue, such as people waiting in line.
+Let's use hashing as an example, the set is able to add, remove, and test for membership in O(1) time.
 
 ![guess_design](queue.jpeg)
 
@@ -14,48 +12,65 @@ The person who arrives first joins the queue first and gets served first, while 
 
 When the person at the front is removed from the queue we call this a dequeue operation. When a new person joins the queue at the back, we call this an enqueue operation. No one can cheat and enter the line in the middle of the queue.
 
-## LINKED LIST IN PYTHON
+## SET IN PYTHON
 
-In Python, a queue can be represented using a list.
+In Python, a set can be represented using a curly braces (e.g. my_set = {1, 2, 3}) To create an empty set (unlike an empty list), we use the code: empty_set = set().
 
-Here's an example of how to use a queue in Python:
+Here's an example of how to use a set in Python:
 
 ```python
-# Create an empty queue using a list
-queue = []
+# Creating a set
+fruits = {'apple', 'banana', 'orange', 'apple', 'pear'}
 
-# Enqueue elements
-queue.append(10)
-queue.append(20)
-queue.append(30)
+print(fruits)
+# Expected Result: {'apple', 'pear', 'banana', 'orange'}
 
-# Dequeue elements
-item = queue.pop(0)
-print(item)  
-# # Expected Result: 10
+# Adding elements to a set
+fruits.add('grape')
+print(fruits)
+# Expected Result: {'apple', 'pear', 'banana', 'grape', 'orange'}
 
-# Peek at the front element
-front_item = queue[0]
-print(front_item)  
-# Expected Result: 20
+# Removing an element from a set
+fruits.remove('banana')
+print(fruits)
+# Expected Result: {'apple', 'pear', 'grape', 'orange'}
 
-# Check if the queue is empty
-is_empty = len(queue) == 0
-print(is_empty)  
-# Expected Result: False
+# Checking membership in a set
+print('apple' in fruits)
+# Expected Result: True
 
-# Get the size of the queue
-size = len(queue)
-print(size)  
-# Expected Result: 2
+# Performing set operations
+vegetables = {'carrot', 'spinach', 'tomato', 'apple'}
+
+# Union of two sets
+all_items = fruits.union(vegetables)
+print(all_items)
+# Expected Result: {'apple', 'carrot', 'spinach', 'grape', 'tomato', 'orange', 'pear'}
+
+# Intersection of two sets
+common_items = fruits.intersection(vegetables)
+print(common_items)
+# Expected Result: {'apple'}
+
+# Difference between two sets
+unique_fruits = fruits.difference(vegetables)
+print(unique_fruits)
+# Expected Result: {'pear', 'grape', 'orange'}
+
+# Size of a set
+print(len(fruits))
+# Expected Result: 4
+
 
 ```
 
-The append() method is used to enqueue elements, and the pop(0) method is used to dequeue elements. The rest of the operations, such as peeking, checking emptiness, and getting the size, are the same as the previous example. 
+In the above example, a set called fruits is created, containing various fruit names. Since sets do not allow duplicates, any duplicate elements are automatically removed. Elements can be added to the set using the add() method and removed using the remove() method.
 
-The performance of the queue using a Python list is based on the performance of the dynamic array.
+Membership testing is demonstrated by checking if the element 'apple' is present in the set. Set operations like union, intersection, and difference are performed between the fruits set and a vegetables set. The size of the set is obtained using the len() function.
 
-![guess_design](queue2.png)
+The performance of the set is based on the performance of the hashing algorithm.
+
+![guess_design](set2.png)
 
 
 
