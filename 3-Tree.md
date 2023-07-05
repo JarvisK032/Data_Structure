@@ -131,6 +131,8 @@ def _traverse_forward(self, node):
 ```
 This method provides a convenient way to access and process the values stored in the BST in a sorted order.You can use this code as part of a larger binary search tree implementation to enable iteration and traversal functionality.
 
+## Big O Notation
+
 The table below shows the common functions in a BST.
 
 ![guess_design](tree3.png)
