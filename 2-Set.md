@@ -63,6 +63,8 @@ In the above example, a set called fruits is created, containing various fruit n
 
 Membership testing is demonstrated by checking if the element 'apple' is present in the set. Set operations like union and intersection are performed between the fruits set and a vegetables set. The size of the set is obtained using the len() function.
 
+## Big O Notation
+
 The performance of the set is based on the performance of the hashing algorithm.
 
 ![guess_design](set2.png)
