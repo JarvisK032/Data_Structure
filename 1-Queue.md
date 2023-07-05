@@ -53,6 +53,8 @@ print(size)
 
 The append() method is used to enqueue elements, and the pop(0) method is used to dequeue elements. The rest of the operations, such as peeking, checking emptiness, and getting the size, are the same as the previous example. 
 
+## Big O Notation
+
 The performance of the queue using a Python list is based on the performance of the dynamic array.
 
 ![guess_design](queue2.png)
